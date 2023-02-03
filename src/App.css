@@ -1,38 +1,138 @@
 .App {
   text-align: center;
+  margin: 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+body {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.sort {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  float: right;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.hero {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+}
+
+button {
+  border: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+select {
+  background-color: #282c34;
+  border: 1px solid antiquewhite;
+  border-radius: 5px;
+  padding: 2px;
+  color: aliceblue;
+}
+
+.sort > div {
+  margin-left: 5px;
+}
+
+label {
+  font-size: 15px;
+}
+
+button {
+  padding: 5px;
+  margin: 5px;
+  width: fit-content;
+  background-color: #282c34;
+  border-color: antiquewhite;
+  color: antiquewhite;
+}
+
+input {
+  padding: 3px;
+  border-radius: 5px;
+  background-color: #282c34;
+  color: antiquewhite;
+  border: 1px solid antiquewhite;
+  margin-left: 5px;
+}
+
+main {
+  margin-top: 4rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+td {
+  padding: 5px;
+  border: 1px solid white;
+  /* font-size: 0.5rem; */
+}
+
+.toggleBtn {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 4em;
+}
+
+.search {
+  display: inline-flex;
+  justify-content: center;
+  width: max-content;
+}
+
+.delete {
+  color: salmon;
+  text-decoration: underline;
+  border: 0;
+}
+
+.delete:hover {
+  cursor: pointer;
+}
+
+.clearBtn {
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid aliceblue;
+}
+
+.clearBtn:hover {
+  background-color: antiquewhite;
+  color: #282c34;
+}
+
+@media screen and (max-width: 480px) {
+  td {
+    font-size: 0.7rem;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media screen and (max-width: 731px) {
+  .hero {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    /* width: 50%; */
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  main {
+    margin-top: 2rem;
   }
 }
