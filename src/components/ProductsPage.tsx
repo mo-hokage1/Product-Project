@@ -21,6 +21,7 @@ const ProductsPage: React.FC = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [deleteValue, setDeleteValue] = useState<string>("");
 
+  // Fetch and sort products data when searchSubmit or sortBy changes
   useEffect(() => {
     fetch("https://dummyjson.com/products")
       .then((res) => res.json())
@@ -41,6 +42,7 @@ const ProductsPage: React.FC = () => {
       );
   }, [searchSubmit, sortBy, sortAscending]);
 
+  // Fetch and sort searched products data when toggle or sortBy changes
   useEffect(() => {
     search &&
       fetch(`https://dummyjson.com/products/search?q=${search}`)
@@ -62,6 +64,7 @@ const ProductsPage: React.FC = () => {
         );
   }, [toggle, sortBy, sortAscending]);
 
+  // useEffect for deleting a product
   useEffect(() => {
     deleteValue &&
       fetch(`https://dummyjson.com/products/${deleteValue}`, {
@@ -78,8 +81,9 @@ const ProductsPage: React.FC = () => {
             prevProducts.filter((product) => product.id !== deleteValue)
           )
         );
-  }, [deleteValue, toggle, sortBy, sortAscending]);
+  }, [deleteValue, sortBy, sortAscending]);
 
+  // useEffect for filtering by category
   useEffect(() => {
     category !== ""
       ? fetch(`https://dummyjson.com/products/category/${category}`)
@@ -116,35 +120,42 @@ const ProductsPage: React.FC = () => {
               })
             )
           );
-  }, [category, searchSubmit, toggle, sortBy, sortAscending]);
+  }, [category, sortBy, sortAscending]);
 
+  // function to handle sorting based on selected value
   const handleSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(event.target.value as keyof Product);
     setSortAscending(true);
   };
 
+  // function to handle filtering based on selected value
   const handleFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCategory(event.target.value);
     console.log(category);
   };
 
+  // function to toggle the sort order between ascending and descending
   const toggleSortOrder = () => {
     setSortAscending((prevSortAscending) => !prevSortAscending);
   };
 
+  // function to handle search input
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
   return (
     <div>
+      {/* main container for the Product List component */}
       <div className="title">Product List</div>
       <div className="hero">
         <div className="search">
+          {/* search form */}
           <form
             action=""
             onSubmit={(e) => {
               e.preventDefault();
+              // if there is a value in search, setSearchSubmit to true and toggle the dropdown
               search && setSearchSubmit(true);
               search && toggle === false ? setToggle(true) : setToggle(false);
             }}
@@ -166,6 +177,7 @@ const ProductsPage: React.FC = () => {
           <div>
             <label htmlFor="sort-by">Sort By:</label>
           </div>
+          {/* select element for sorting options */}
           <div>
             <select id="sort-by" value={sortBy} onChange={handleSort}>
               <option value="category">Category</option>
@@ -185,11 +197,13 @@ const ProductsPage: React.FC = () => {
           <div>
             <label htmlFor="sort-by">Filter By:</label>
           </div>
+          {/* select element for filtering options */}
           <div>
             <select onChange={handleFilter} value={category}>
               <option value="" onClick={() => setSearchSubmit(false)}>
                 All
               </option>
+              {/* product categories */}
               <option value="smartphones">Smartphones</option>
               <option value="laptops">Laptops</option>
               <option value="fragrances">Fragrances</option>
@@ -212,11 +226,14 @@ const ProductsPage: React.FC = () => {
               <option value="lighting">Lighting</option>
             </select>
 
+            {/* // clear button click event handler */}
             <button
               onClick={() => {
+                // get the input element by its id
                 const inputElement = document.getElementById(
                   "search"
                 ) as HTMLInputElement;
+                // clear the input value
                 inputElement.value = "";
                 setSearchSubmit(false);
                 setCategory("");
@@ -229,6 +246,7 @@ const ProductsPage: React.FC = () => {
           </div>
         </div>
       </div>
+      {/* // main component that displays the table */}
       <main>
         <table>
           <thead>
@@ -242,7 +260,9 @@ const ProductsPage: React.FC = () => {
           </thead>
           <tbody>
             {searchSubmit === true
-              ? searchedProducts.map((product) => {
+              ? // map the searchedProducts and display each product in a table row
+                searchedProducts.map((product) => {
+                  // shortening the description if it's longer than 25 characters
                   const description =
                     product.description?.length > 25
                       ? `${product.description?.substring(0, 25)}...`
@@ -263,12 +283,15 @@ const ProductsPage: React.FC = () => {
                     </tr>
                   );
                 })
-              : products.map((product) => {
+              : // map the products and display each product in a table row
+                products.map((product) => {
+                  // shortening the description if it's longer than 55 characters
                   const description =
                     product.description?.length > 55
                       ? `${product.description?.substring(0, 55)}...`
                       : product.description;
                   return (
+                    // only display the product if it's not deleted
                     !product.isDeleted && (
                       <tr key={product.id}>
                         <td>{product.category}</td>

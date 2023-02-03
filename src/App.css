@@ -1,20 +1,28 @@
+/* Import Google font */
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
+/* Center alignment and margin for the App class */
 .App {
   text-align: center;
   margin: 0 auto;
 }
 
+/* Set body background color and text color */
 body {
   background-color: #282c34;
   color: white;
 }
 
-.sort {
+/* Display inline-flex, align items center for sort and search classes, float right */
+.sort,
+.search {
   display: inline-flex;
   align-items: center;
   width: max-content;
   float: right;
 }
 
+/* Display flex, justify content space-evenly for hero class and set margins */
 .hero {
   display: flex;
   justify-content: space-evenly;
@@ -22,14 +30,30 @@ body {
   margin-top: 1rem;
 }
 
-button {
+/* Set padding, margin, width, background color, border, text color, border radius, border, text transform, and font weight for button and clearBtn */
+button,
+.clearBtn {
+  padding: 5px;
+  margin: 5px;
+  width: fit-content;
+  background-color: #282c34;
   border: 0;
+  color: antiquewhite;
+  border-radius: 5px;
+  border: 1px solid antiquewhite;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-button:hover {
+/* Set hover cursor and background color for button and clearBtn */
+button:hover,
+.clearBtn:hover {
   cursor: pointer;
+  background-color: antiquewhite;
+  color: #282c34;
 }
 
+/* Set background color, border, border radius, padding, and text color for select */
 select {
   background-color: #282c34;
   border: 1px solid antiquewhite;
@@ -38,32 +62,31 @@ select {
   color: aliceblue;
 }
 
-.sort > div {
+/* Set margin-left for sort > div and input */
+.sort > div,
+input {
   margin-left: 5px;
 }
 
+/* Remove border and set background color to none for .fa-sort */
+.fa-sort {
+  border: 0 !important;
+  background-color: none;
+}
+
+/* Set background color, text color, and padding for input  */
+input {
+  background-color: transparent;
+  color: antiquewhite;
+  padding: 5px;
+}
+
+/* Set font size for label */
 label {
   font-size: 15px;
 }
 
-button {
-  padding: 5px;
-  margin: 5px;
-  width: fit-content;
-  background-color: #282c34;
-  border-color: antiquewhite;
-  color: antiquewhite;
-}
-
-input {
-  padding: 3px;
-  border-radius: 5px;
-  background-color: #282c34;
-  color: antiquewhite;
-  border: 1px solid antiquewhite;
-  margin-left: 5px;
-}
-
+/* Set margin-top, display flex, justify content center for main */
 main {
   margin-top: 4rem;
   margin: 0 auto;
@@ -71,67 +94,57 @@ main {
   justify-content: center;
 }
 
+/* Set padding and border for td */
 td {
   padding: 5px;
   border: 1px solid white;
-  /* font-size: 0.5rem; */
 }
 
+/* Set width to fit-content, margin to 0 auto, and remove border for toggleBtn */
 .toggleBtn {
   width: fit-content;
   margin: 0 auto;
+  border: 0;
 }
 
+/* Main Title Class */
 .title {
   font-size: 4em;
+  font-family: "Itim", cursive;
+  text-decoration: underline;
 }
 
-.search {
-  display: inline-flex;
-  justify-content: center;
-  width: max-content;
-}
-
+/* Class for delete */
 .delete {
   color: salmon;
   text-decoration: underline;
   border: 0;
 }
 
+/* Delete hover effect */
 .delete:hover {
   cursor: pointer;
 }
 
-.clearBtn {
-  font-size: 0.7rem;
-  margin-left: 0.5rem;
-  border-radius: 5px;
-  text-transform: uppercase;
-  font-weight: bold;
-  border: 1px solid aliceblue;
-}
-
-.clearBtn:hover {
-  background-color: antiquewhite;
-  color: #282c34;
-}
-
+/* Media query for small screens */
 @media screen and (max-width: 480px) {
   td {
     font-size: 0.7rem;
   }
 }
 
+/* Media query for medium-sized screens */
 @media screen and (max-width: 731px) {
+  /* Hero class */
   .hero {
     width: fit-content;
     display: flex;
     flex-direction: column;
-    /* width: 50%; */
     justify-content: center;
     align-items: center;
     margin: 0 auto;
   }
+  /*  Main section */
   main {
     margin-top: 2rem;
   }
